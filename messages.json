@@ -1,1 +1,29 @@
 
+Retrofit retrofit = new Retrofit.Builder()
+    .baseUrl("https://api.github.com")
+    .addConverterFactory(GsonConverterFactory.create())
+    .build();
+
+GitHubService service = retrofit.create(GitHubService.class);
+
+// Replace 'owner', 'repo', and 'path' with your actual values
+Call<ResponseBody> call = service.getMessages("owner", "repo", "path/to/messages.json");
+call.enqueue(new Callback<ResponseBody>() {
+    @Override
+    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+        if (response.isSuccessful()) {
+            try {
+                // Assuming the content is in JSON format. You need to decode it if it's base64.
+                String content = response.body().string();
+                // TODO: Parse the JSON content and display your messages
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onFailure(Call<ResponseBody> call, Throwable t) {
+        // Handle failure
+    }
+});
