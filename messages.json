@@ -7,7 +7,7 @@ Retrofit retrofit = new Retrofit.Builder()
 GitHubService service = retrofit.create(GitHubService.class);
 
 // Replace 'owner', 'repo', and 'path' with your actual values
-Call<ResponseBody> call = service.getMessages("owner", "repo", "path/to/messages.json");
+Call<ResponseBody> call = service.getMessages("ownerjkdah", "rasdasepo", "path/to/messages.json");
 call.enqueue(new Callback<ResponseBody>() {
     @Override
     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
